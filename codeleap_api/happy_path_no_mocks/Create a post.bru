@@ -10,25 +10,34 @@ post {
   auth: none
 }
 
-body:json {
-  {
-    "username": "User",
-    "title": "User",
-    "content": "User"  
-  }
-}
-
 vars:post-response {
   last_post_id: res.body.id
+  username: res.body.username
 }
 
 assert {
   res.status: eq 200
   res.body: isJson
   res.body.id: isNumber
-  res.body.username: matches
-  res.body.title: matches User
-  res.body.content: matches User
+  res.body.username: matches {{expected_body.username}}
+  res.body.title: matches {{expected_body.title}}
+  res.body.content: matches {{expected_body.content}}
+}
+
+script:pre-request {
+  const { faker } = require('@faker-js/faker');
+  
+  const randomName = faker.name.fullName();
+  const randomTitle = faker.lorem.paragraph();
+  const randomContent = faker.lorem.paragraph({ min: 1, max: 3 });
+  
+  req.setBody({
+    username: randomName,
+    title: randomTitle,
+    content: randomContent
+  });
+  
+  bru.setEnvVar("expected_body",req.body);
 }
 
 docs {

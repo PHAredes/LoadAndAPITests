@@ -10,20 +10,26 @@ patch {
   auth: none
 }
 
-body:json {
-  {
-    "title": "Update",
-    "content": "Update"
-  }
-}
-
 assert {
   res.status: eq 200
   res.body: isJson
   res.body.id: isNumber
-  res.body.username: matches Update
-  res.body.title: matches Update
-  res.body.content: matches Update
+  res.body.username: matches {{username}}
+  res.body.title: matches {{patchTitle}}
+  res.body.content: matches {{patchContent}}
+}
+
+script:pre-request {
+  const { faker } = require('@faker-js/faker');
+  
+  const patchTitle = faker.lorem.paragraph();
+  const patchContent = faker.lorem.paragraph({ min: 1, max: 3 });
+  
+  req.setBody({
+    title: patchTitle,
+    content: patchContent
+  });
+  
 }
 
 docs {

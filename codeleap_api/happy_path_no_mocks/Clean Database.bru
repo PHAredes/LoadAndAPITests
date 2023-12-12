@@ -1,0 +1,49 @@
+meta {
+  name: Clean Database
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://dev.codeleap.co.uk/careers/
+  body: none
+  auth: none
+}
+
+script:post-response {
+  const axios = require('axios');
+    
+    let data = res.getBody();
+    console.log(data);
+    let ids = data.results.map(result => result.id);
+    for (const id of ids) {
+        const deleteUrl = `https://dev.codeleap.co.uk/careers/${id}/`;
+        axios.delete(deleteUrl);}
+}
+
+tests {
+  const expect_data_after_clean_database =
+  {
+    "count": 0,
+    "next": null,
+    "previous": null,
+    "results": []
+  };
+  
+  test("should be able to retrieve data", function() {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("data should be empty json", function() {
+    const data = res.getBody();
+    expect(data).to.deep.equal(expect_data_after_clean_database);});
+  
+  
+}
+
+docs {
+  ### Clean Database
+  
+  This is a script
+}
