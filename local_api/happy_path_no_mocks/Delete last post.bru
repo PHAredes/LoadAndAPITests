@@ -1,0 +1,27 @@
+meta {
+  name: Delete last post
+  type: http
+  seq: 4
+}
+
+delete {
+  url: https://dev.codeleap.co.uk/careers/{{last_post_id}}/
+  body: none
+  auth: none
+}
+
+query {
+  : 
+}
+
+assert {
+  res.status: eq 204
+  res.message: isUndefined
+  res.body: isEmpty;
+}
+
+docs {
+  Deletes the last post; uses hardcoded values.
+  
+  Please note it only works after you run _post_. Use Runner option instead of running any script individually.
+}

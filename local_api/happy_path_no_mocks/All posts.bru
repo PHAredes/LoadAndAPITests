@@ -1,0 +1,29 @@
+meta {
+  name: All posts
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://dev.codeleap.co.uk/careers/
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body: isJson
+}
+
+script:post-response {
+  let data = res.getBody();
+  let ids = data.results.map(result => result.id);
+  bru.setEnvVar("ids", ids);
+  
+}
+
+docs {
+  ### Get all
+  
+  Returns all values, even if there is no values.
+}
