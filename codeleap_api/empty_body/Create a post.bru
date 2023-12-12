@@ -1,0 +1,21 @@
+meta {
+  name: Create a post
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://dev.codeleap.co.uk/careers/
+  body: json
+  auth: none
+}
+
+assert {
+  res.status: eq 400
+}
+
+docs {
+  ### Post
+  
+  Simulates a post; hardcoded values
+}
