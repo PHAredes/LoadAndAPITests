@@ -10,6 +10,14 @@ post {
   auth: none
 }
 
+body:json {
+  {
+    "username": "User",
+    "title": "User",
+    "content": "User"  
+  }
+}
+
 vars:post-response {
   last_post_id: res.body.id
 }
@@ -18,7 +26,7 @@ assert {
   res.status: eq 200
   res.body: isJson
   res.body.id: isNumber
-  res.body.username: matches 
+  res.body.username: matches
   res.body.title: matches User
   res.body.content: matches User
 }
