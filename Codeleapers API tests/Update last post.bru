@@ -1,0 +1,28 @@
+meta {
+  name: Update last post
+  type: http
+  seq: 3
+}
+
+patch {
+  url: https://dev.codeleap.co.uk/careers/{{last_post_id}}/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "Update",
+    "title": "Update",
+    "content": "Update"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body: isJson
+  res.body.id: isNumber
+  res.body.username: matches Update
+  res.body.title: matches Update
+  res.body.content: matches Update
+}
