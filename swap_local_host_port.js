@@ -8,23 +8,25 @@ function replaceInFile(filePath, oldText, newText) {
 }
 
 function replaceInDir(dirPath, oldText, newText) {
-  const files = fs.readdirSync(dirPath);
+  const stats = fs.statSync(dirPath);
 
-  files.forEach(file => {
-    const filePath = path.join(dirPath, file);
-    const stats = fs.statSync(filePath);
+  if (stats.isFile()) {
+    replaceInFile(dirPath, oldText, newText);
+  } else if (stats.isDirectory()) {
+    const files = fs.readdirSync(dirPath);
 
-    if (stats.isFile()) {
-      replaceInFile(filePath, oldText, newText);
-    } else if (stats.isDirectory()) {
+    files.forEach(file => {
+      const filePath = path.join(dirPath, file);
       replaceInDir(filePath, oldText, newText);
-    }
-  });
+    });
+  }
 }
 
-const dirPath = './local_api'; 
+const dirPaths = ['./local_api', './artillery_load_tests/artillery_local_api.yml']; // Substitua pelos caminhos corretos para sua pasta e arquivo
 const port = process.argv[2];
 const oldText = 'http://localhost:\\d+';
 const newText = `http://localhost:${port}`;
 
-replaceInDir(dirPath, oldText, newText);
+dirPaths.forEach(dirPath => {
+  replaceInDir(dirPath, oldText, newText);
+});

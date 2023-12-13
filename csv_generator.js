@@ -26,7 +26,7 @@ function generateRandomCSV(numRecords) {
 }
 
 // Número de registros a serem gerados
-const numRecords = 10000;
+const numRecords = 10000; // modifique o valor para alterar a quantidade de mocks gerados
 
 // Gera o conteúdo CSV
 const csvContent = generateRandomCSV(numRecords);
