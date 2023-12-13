@@ -34,6 +34,22 @@ node csv_generator.js
 
 No cliente do Bruno, é possível visualizar os testes para a API, bem como um esboço de documentação para cada endpoint. Os scripts estão separado em [codeleap_api](/codeleap_api/) (testa a API disponibilizada pela Codeleap em <https://dev.codeleap.co.uk/careers>) e [local_api](/local_api/) (os mesmos scripts)
 
+### utils
+
+Fornece scripts úteis para outros testes. Essencialmente, fornece um script para limpar a database local e outro para limpar a database remota
+
+#### Local
+
+```bash
+bru run ""./utils/Clean Local Database.bru"
+```
+
+#### Remoto
+
+```bash
+bru run ""./utils/Clean Database.bru"
+```
+
 ### codeleap_api
 
 #### happy_path_no_mocks
@@ -84,7 +100,7 @@ bru run ./local/invalid_data
 
 Teste de carga simples, basicamente fazem uma série de post (o payload vem de um csv gerado com dados mockados pelo faker) e um get após cada post. Para rodar:
 
-### Local
+### Local Load Test
 
 ```bash
 artillery run artillery_local_api.yml
@@ -96,7 +112,7 @@ Rodar o seguinte script após esse teste apaga os posts:
 bru run ""./utils/Clean Local Database.bru"
 ```
 
-### Remoto (cuidado)
+### Remote Load Test (cuidado)
 
 > [!CAUTION]
 > Esse script pode gerar até 123000 requisições na API, e vai inserir muitos dados na base de dados da CodeLeap. Certifique-se que você tem permissão para isso!
@@ -110,3 +126,17 @@ Certifique-se de rodar o seguinte comando após esse teste para apagar os posts:
 ```bash
 bru run "./utils/Clean Database.bru"
 ```
+
+## Outros
+
+### CSV Generator
+
+Fornece um arquivo .csv com o payload para os testes de carga. Já está tudo configurado, é só rodar
+
+```bash
+node csv_generator.js
+```
+
+### Bugs
+
+Sumário de bugs e comportamentos fora do padrão encontrados durante os testes. Disponível [aqui](/bugs.md)
