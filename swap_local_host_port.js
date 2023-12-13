@@ -12,7 +12,10 @@ function replaceInDir(dirPath, oldText, newText) {
 
   if (stats.isFile()) {
     replaceInFile(dirPath, oldText, newText);
-  } else if (stats.isDirectory()) {
+    return;
+  } 
+  
+  if (stats.isDirectory()) {
     const files = fs.readdirSync(dirPath);
 
     files.forEach(file => {
