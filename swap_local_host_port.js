@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-function replaceInFile(filePath, pattern, newNumber) {
+function replaceInFile(filePath, oldText, newText) {
   const data = fs.readFileSync(filePath, 'utf-8');
-  const newValue = data.replace(new RegExp(`${pattern}\\d+`, 'g'), `${pattern}${newNumber}`);
+  const newValue = data.replace(new RegExp(oldText, 'g'), newText);
   fs.writeFileSync(filePath, newValue, 'utf-8');
 }
 
-function replaceInDir(dirPath, pattern, newNumber) {
+function replaceInDir(dirPath, oldText, newText) {
   const files = fs.readdirSync(dirPath);
 
   files.forEach(file => {
@@ -15,15 +15,16 @@ function replaceInDir(dirPath, pattern, newNumber) {
     const stats = fs.statSync(filePath);
 
     if (stats.isFile()) {
-      replaceInFile(filePath, pattern, newNumber);
+      replaceInFile(filePath, oldText, newText);
     } else if (stats.isDirectory()) {
-      replaceInDir(filePath, pattern, newNumber);
+      replaceInDir(filePath, oldText, newText);
     }
   });
 }
 
-const dirPath = './local_api'; // Hardcoded de propósito
-const pattern = 'http://localhost:';
-const newNumber = port;
+const dirPath = './local_api'; 
+const port = process.argv[2];
+const oldText = 'http://localhost:\\d+';
+const newText = `http://localhost:${port}`;
 
-replaceInDir(dirPath, pattern, newNumber);
+replaceInDir(dirPath, oldText, newText);
