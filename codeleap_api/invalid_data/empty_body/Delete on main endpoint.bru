@@ -1,0 +1,22 @@
+meta {
+  name: Delete on main endpoint
+  type: http
+  seq: 3
+}
+
+delete {
+  url: https://dev.codeleap.co.uk/careers/
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 405
+  res.body: contains "detail": "Method \"DELETE\" not allowed."
+}
+
+docs {
+  ## Delete without specified path
+  
+  This asserts if API treats a wrong delete on main endpoint without the correct path.
+}
