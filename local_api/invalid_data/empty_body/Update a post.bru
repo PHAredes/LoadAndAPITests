@@ -1,0 +1,15 @@
+meta {
+  name: Update a post
+  type: http
+  seq: 2
+}
+
+patch {
+  url: http://localhost:3000/careers/
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 405
+}

@@ -16,12 +16,12 @@ query {
 
 assert {
   res.status: eq 204
-  res.message: isUndefined 
+  res.message: isUndefined
   res.body: isEmpty;
 }
 
 docs {
-  Deletes the last post; uses hardcoded values.
+  ## Valid Delete last post
   
   Please note it only works after you run _post_. Use Runner option instead of running any script individually.
 }

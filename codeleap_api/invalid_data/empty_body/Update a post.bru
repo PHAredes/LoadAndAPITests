@@ -13,3 +13,9 @@ patch {
 assert {
   res.status: eq 405
 }
+
+docs {
+  ## Update with empty body
+  
+  It attempts to update a post with a empty body request. Returns a 4xx status code
+}
