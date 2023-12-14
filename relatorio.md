@@ -20,6 +20,7 @@ Dentre as aplicações fornecidas, avaliei o seguinte:
 - Funciona out of the box no W11, WSL2 com Ubuntu e no Manjaro (versões mais recentes)
 - A versão faz uso de diversas dependências desatualizadas e descontinuadas
 - Algumas dessas dependências apresentam vulnerabilidades a ataque DDoS
+- É o único que possui uma licença
 
 #### Desempenho
 
@@ -37,6 +38,7 @@ p99 < 500ms, p95 < 2000ms (falhou em ambos)
 - Aparenta atender os requisitos
 - Docker ou um README com a versão do Node teria ajudando bastante
 - A versão faz uso de diversas dependências desatualizadas e descontinuadas
+- Não possui licença
 
 Não avaliei desempenho, pois precisaria rodar o script dando alvo numa aplicação web sem autorização (ia parecer um DoS mal feito)
 
@@ -45,8 +47,12 @@ Não avaliei desempenho, pois precisaria rodar o script dando alvo numa aplicaç
 - Precisei baixar um APK deprecated que desse suporte a SDKs mais antigas do Expo para rodar no meu dispositivo Android;
 - - Houve uma mudança na forma que o Expo funciona e ao invés de um CLI global ele configura por projeto
 - - A outra alternativa demandaria modificar consideravelmente o ambiente do projeto (aquela cascata de breaking changes de projetos JS)
-- A integração com a API nãoo está funcional, no entanto a aplicação estoura exceção ao fazer uma postagem
-- É importante notar que a postagem é feita na API, mas a página estoura o erro e não carrega
+- A aplicação não funcionou por completo, apenas a página de login é funcional. Não consegui acessar a página feed
+- Tentei novamente testar a aplicação, usei o Android Studio e o meu smartphone (Moto G9 Power) e tive o mesmo problema
+- Também tentei rodar a aplicação no celular e abrir no navegador (Google Chrome) no computador; nesse caso nem abriu pq a função do webpack para a versão do Expo usada era experimental e estava quebrada
+- Não possui licença
+
+Os prints dos logs de estão disponíveis em [public](./public/)
 
 ## Bugs
 
@@ -56,4 +62,6 @@ Não avaliei desempenho, pois precisaria rodar o script dando alvo numa aplicaç
 - É possível passar uma quantidade arbitrária de pares chave-valor com a mesma chave no body de uma requisição; a última será usada para atualizar a postagem.
 - É possível alterar o valor do campo _username_ ao fazer uma requisição _patch_ no _endpoint_ <https://dev.codeleap.co.uk/careers/{{post_id}}/>; é só passar qualquer valor no campo _username_ do corpo.
 
-- A aplicação em React Native não funciona corretamente, ela apresenta exceção ao tentar fazer uma postagem e não carrega as postagens da database
+### React Native
+
+- A aplicação em React Native não funciona corretamente, ela apresenta exceção ao tentar fazer o pseudo-login e não é possível carregar o _feed_

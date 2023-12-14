@@ -35,7 +35,9 @@ node csv_generator.js
 
 ## Bruno API
 
-No cliente do Bruno, é possível visualizar os testes para a API, bem como um esboço de documentação para cada endpoint. Os scripts estão separado em [codeleap_api](/codeleap_api/) (testa a API disponibilizada pela Codeleap em <https://dev.codeleap.co.uk/careers>) e [local_api](/local_api/) (os mesmos scripts)
+No cliente do Bruno, é possível visualizar os testes para a API, bem como um esboço de documentação para cada endpoint. Os scripts estão separado em [codeleap_api](/bru/codeleap_api/) (testa a API disponibilizada pela Codeleap em <https://dev.codeleap.co.uk/careers>) e [local_api](/bru/local_api/) (os mesmos scripts)
+
+Para visualizar no client, vá em Collections > Open Collection e selecione o diretório [bru](./bru)
 
 ### utils
 
@@ -55,14 +57,14 @@ bru run ""./utils/Clean Database.bru"
 
 ### codeleap_api
 
-#### happy_path_no_mocks
+#### happy_path_no_fakes
 
 Os scripts aqui chamam os endpoints em sequência de forma a não quebrar. Executá-los fora de ordem vai fazer os testes falharem. É apenas um teste de integração do "caminho feliz"
 
 Para executar, clique com o botão direito na pasta dentro do Bruno API Client e escolha run. Alternativamente:
 
 ``` bash
-bru run ./codeleap_api/happy_path_no_mocks
+bru run ./codeleap_api/happy_path_no_fakes
 ```
 
 #### invalid_data
@@ -79,14 +81,14 @@ bru run ./codeleap_api/invalid_data
 
 Os scripts aqui fazem o mesmo que os scripts que testam a API remota, só que numa API rodando num servidor local
 
-#### happy_path_with_mocks
+#### happy_path_with_fakes
 
-Os scripts aqui chamam os endpoints em sequência de forma a não quebrar. Executá-los fora de ordem vai fazer os testes falharem. É apenas um teste de integração do "caminho feliz" usando dados mockados.
+Os scripts aqui chamam os endpoints em sequência de forma a não quebrar. Executá-los fora de ordem vai fazer os testes falharem. É apenas um teste de integração do "caminho feliz" usando dados fake.
 
 Para executar, clique com o botão direito na pasta dentro do Bruno API Client e escolha run. Alternativamente:
 
 ``` bash
-bru run ./local_api/happy_path_no_mocks
+bru run ./local_api/happy_path_no_fakes
 ```
 
 #### invalid_data_local
@@ -103,7 +105,7 @@ bru run ./local/invalid_data
 
 ### Setup
 
-Teste de carga simples. Na API faz uma série de posts (o payload vem de um csv gerado com dados mockados pelo faker) e um get após cada post. Nas aplicação chama as páginas index e feed.
+Teste de carga simples. Na API faz uma série de posts (o payload vem de um csv gerado com dados fake pelo faker) e um get após cada post. Nas aplicação chama as páginas index e feed.
 
 Os valores foram arbitrados com base no "acho que tá bom assim". Bom, eu não tenho uma métrica a seguir então usei essa. Os testes não fazem sentido num ambiente real e são apenas para demonstrar que eu consigo fazer um teste de carga e analisar os dados
 
@@ -153,3 +155,30 @@ node csv_generator.js
 ### Bugs
 
 Sumário de bugs e comportamentos fora do padrão encontrados durante os testes. Disponível [aqui](/relatorio.md#bugs)
+
+### Ferramentas
+
+- Bruno API Client
+- Bruno CLI
+- Artillery
+- Faker.js
+- Jest
+- React Testing Library
+- Git
+- Node.js
+- Yarn
+- Expo Go
+- Markdown
+- Visual Studio Code
+- Manjaro
+- WSL2 (Ubuntu Distro)
+- Windows 11
+- Android Studio
+- JavaScript
+- TypeScript
+
+As versões, quando necessárias, estão disponíveis nos arquivos [package.json](./package.json) e [package-json.lock](./package-json.lock)
+
+### Licença
+
+Projeto sob licença MIT.
