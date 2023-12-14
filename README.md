@@ -1,10 +1,13 @@
 # Tests Doc
 
+Nesse diretório estão contidos os testes de API, de carga e de integração da API e do website (frontend)
+
 ## Pre-requisitos
 
 Para rodar os testes, é necessário ter instalado na máquina:
 
-- Node.js (versão 18+)
+- [Node.js](https://nodejs.org) (versão 18+)
+- npm (já vem instalado com Node.js)
 - [Bruno API Client](https://www.usebruno.com/downloads) (alt: [Bruno CLI](https://docs.usebruno.com/cli/overview.html))
 - [Artillery](https://www.artillery.io/docs/get-started/get-artillery)
 
@@ -98,7 +101,11 @@ bru run ./local/invalid_data
 
 ## Artillery
 
-Teste de carga simples, basicamente fazem uma série de post (o payload vem de um csv gerado com dados mockados pelo faker) e um get após cada post. Para rodar:
+### Setup
+
+Teste de carga simples. Na API faz uma série de posts (o payload vem de um csv gerado com dados mockados pelo faker) e um get após cada post. Nas aplicação chama as páginas index e feed.
+
+Os valores foram arbitrados com base no "acho que tá bom assim". Bom, eu não tenho uma métrica a seguir então usei essa. Os testes não fazem sentido num ambiente real e são apenas para demonstrar que eu consigo fazer um teste de carga e analisar os dados
 
 ### Local Load Test
 
@@ -115,7 +122,7 @@ bru run ""./utils/Clean Local Database.bru"
 ### Remote Load Test (cuidado)
 
 > [!CAUTION]
-> Esse script pode gerar até 123000 requisições na API, e vai inserir muitos dados na base de dados da CodeLeap. Certifique-se que você tem permissão para isso!
+> Esse script pode gerar até 372000 requisições na API, e vai inserir muitos dados na base de dados da CodeLeap. Certifique-se que você tem permissão para isso!
 
 ```bash
 artillery run artillery_remote_api.yml
@@ -125,6 +132,12 @@ Certifique-se de rodar o seguinte comando após esse teste para apagar os posts:
 
 ```bash
 bru run "./utils/Clean Database.bru"
+```
+
+### Application Load Test
+
+```bash
+artillery run artillery_front_webpages.yml
 ```
 
 ## Outros
@@ -139,4 +152,4 @@ node csv_generator.js
 
 ### Bugs
 
-Sumário de bugs e comportamentos fora do padrão encontrados durante os testes. Disponível [aqui](/bugs.md)
+Sumário de bugs e comportamentos fora do padrão encontrados durante os testes. Disponível [aqui](/relatorio.md#bugs)
