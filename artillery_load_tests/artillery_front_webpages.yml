@@ -1,14 +1,6 @@
 config:
-  # It's designed to be highly scalable
-  payload:
-    # path is relative to the location of the test script
-    path: "users.csv"
-    fields:
-      - "username"
-      - "title"
-      - "content"
 
-  target: "https://dev.codeleap.co.uk"
+  target: "https://to-vercel-kappa.vercel.app"
   phases:
     - duration: 60
       arrivalRate: 1
@@ -37,12 +29,8 @@ config:
 scenarios:
   - flow:
       - loop:
-        - post:
-            url: "/careers/"
-            json:
-              username: "{{ username }}"
-              title: "{{ title }}"
-              content: "{{ content }}"
+        - get:        
+            url: "/"
         - get:
-            url: "/careers/"
+            url: "/feed/"
         count: 100
