@@ -142,6 +142,17 @@ bru run "./utils/Clean Database.bru"
 artillery run artillery_front_webpages.yml
 ```
 
+### Testes Unitário (React)
+
+Para facilitar a execução, os testes estão junto ao projeto testado no outro arquivo zip. Para executar:
+
+``` js
+yarn
+yarn test
+```
+
+Optei por fazer testes de unidade no componente Button e testar se a página index atendia aos requisitos. Em relação ao projeto original apenas arquivos de configuração e teste foram modificados, o projeto continua funcionando da mesma forma e sem alteração no código original
+
 ## Outros
 
 ### CSV Generator
@@ -158,8 +169,7 @@ Sumário de bugs e comportamentos fora do padrão encontrados durante os testes.
 
 ### Ferramentas
 
-- Bruno API Client
-- Bruno CLI
+- Bruno API Client e CLI
 - Artillery
 - Faker.js
 - Jest
@@ -176,6 +186,7 @@ Sumário de bugs e comportamentos fora do padrão encontrados durante os testes.
 - Android Studio
 - JavaScript
 - TypeScript
+- zsh
 
 As versões, quando necessárias, estão disponíveis nos arquivos [package.json](./package.json) e [package-json.lock](./package-json.lock)
 
