@@ -107,7 +107,7 @@ bru run ./local/invalid_data
 
 Teste de carga simples. Na API faz uma série de posts (o payload vem de um csv gerado com dados fake pelo faker) e um get após cada post. Nas aplicação chama as páginas index e feed.
 
-Os valores foram arbitrados com base no "acho que tá bom assim". Bom, eu não tenho uma métrica a seguir então usei essa. Os testes não fazem sentido num ambiente real e são apenas para demonstrar que eu consigo fazer um teste de carga e analisar os dados
+Os testes não fazem sentido num ambiente real..
 
 ### Local Load Test
 
@@ -124,8 +124,7 @@ bru run ""./utils/Clean Local Database.bru"
 ### Remote Load Test (cuidado)
 
 > [!CAUTION]
-> Esse script pode gerar até 372000 requisições na API, e vai inserir muitos dados na base de dados da CodeLeap. Certifique-se que você tem permissão para isso!
-
+> Esse script vai inserir muitos dados na base de dados.
 ```bash
 artillery run artillery_remote_api.yml
 ```
